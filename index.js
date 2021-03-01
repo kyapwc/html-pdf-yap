@@ -3,7 +3,15 @@ const chromium = require('chrome-aws-lambda')
 const Promise = require('bluebird')
 
 module.exports.generatePdf = async (file, options, callback) => {
-  const args = ['--no-sandbox', 'disabled-setuid-sandbox']
+  const args = [
+    '--no-sandbox',
+    '--headless',
+    '--disable-dev-shm-usage',
+    '--disable-gpu',
+    '--single-process',
+    '--no-zygote',
+    '--disable-setuid-sandbox',
+  ]
 
   const browser = await chromium.puppeteer.launch({
     args,
