@@ -35,7 +35,7 @@ module.exports.generatePdf = async (file, options, callback) => {
 
   return Promise.props(page.pdf(options))
     .then(async (data) => {
-      await browser.ose()
+      await browser.close()
       return Buffer.from(Object.values(data))
     }).asCallback(callback)
 }
