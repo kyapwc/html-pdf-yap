@@ -15,7 +15,7 @@ module.exports.generatePdf = async (file, options, callback) => {
 
   const BROWSERS_MAP = {
     darwin: {
-      firefox: '/Applications/Firefox.app/Contents/MacOS/firefox --headless',
+      firefox: '/Applications/Firefox.app/Contents/MacOS/firefox-bin --headless',
       chrome: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome --headless',
     },
   }
