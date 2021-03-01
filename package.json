@@ -1,0 +1,16 @@
+{
+  "name": "html-pdf-yap",
+  "version": "1.0.0",
+  "description": "testing some pdf stuff",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.7.2",
+    "chrome-aws-lambda": "^7.0.0",
+    "handlebars": "^4.7.7"
+  }
+}
