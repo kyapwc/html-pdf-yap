@@ -13,13 +13,9 @@ module.exports.generatePdf = async (file, options, callback) => {
     '--disable-setuid-sandbox',
   ]
 
-  const BROWSERS_MAP = {
-    darwin: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome --headless',
-  }
-
   const browser = await chromium.puppeteer.launch({
     args,
-    executablePath: !options.isTest ? await chromium.executablePath : BROWSERS_MAP[options.platform],
+    executablePath: chromium.executablePath,
     headless: chromium.headless,
   })
 
