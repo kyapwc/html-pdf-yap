@@ -15,7 +15,7 @@ module.exports.generatePdf = async (file, options, callback) => {
 
   const browser = await chromium.puppeteer.launch({
     args,
-    executablePath: chromium.executablePath,
+    executablePath: await chromium.executablePath,
     headless: chromium.headless,
   })
 
@@ -32,12 +32,10 @@ module.exports.generatePdf = async (file, options, callback) => {
       waitUntil: 'networkidle0',
     })
   }
-  // wait 2 seconds for all content to be available
   await page.waitForTimeout(2000)
 
   return Promise.props(page.pdf(options))
     .then(async (data) => {
-      console.log('data: ', data)
       await browser.close()
       return Buffer.from(Object.values(data))
     }).asCallback(callback)
