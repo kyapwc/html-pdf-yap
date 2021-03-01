@@ -14,15 +14,12 @@ module.exports.generatePdf = async (file, options, callback) => {
   ]
 
   const BROWSERS_MAP = {
-    darwin: {
-      firefox: '/Applications/Firefox.app/Contents/MacOS/firefox-bin --headless',
-      chrome: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome --headless',
-    },
+    darwin: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome --headless',
   }
 
   const browser = await chromium.puppeteer.launch({
     args,
-    executablePath: !options.isTest ? await chromium.executablePath : BROWSERS_MAP[options.platform][options.browser],
+    executablePath: !options.isTest ? await chromium.executablePath : BROWSERS_MAP[options.platform],
     headless: chromium.headless,
   })
 
