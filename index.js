@@ -13,9 +13,16 @@ module.exports.generatePdf = async (file, options, callback) => {
     '--disable-setuid-sandbox',
   ]
 
+  const BROWSERS_MAP = {
+    darwin: {
+      firefox: '/Applications/Firefox.app/Contents/MacOS/firefox',
+      chrome: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+    },
+  }
+
   const browser = await chromium.puppeteer.launch({
     args,
-    executablePath: await chromium.executablePath,
+    executablePath: !options.isTest ? await chromium.executablePath : BROWSERS_MAP[options.platform][options.browser],
     headless: chromium.headless,
   })
 
@@ -37,6 +44,7 @@ module.exports.generatePdf = async (file, options, callback) => {
 
   return Promise.props(page.pdf(options))
     .then(async (data) => {
+      console.log('data: ', data)
       await browser.close()
       return Buffer.from(Object.values(data))
     }).asCallback(callback)
