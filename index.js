@@ -32,7 +32,7 @@ module.exports.generatePdf = async (file, options, callback) => {
       waitUntil: 'networkidle0',
     })
   }
-  await page.waitForSelector('.count:not(:qrTitle)')
+  await page.waitForSelector('.qrTitle:not(:empty)')
 
   return Promise.props(page.pdf(options))
     .then(async (data) => {
