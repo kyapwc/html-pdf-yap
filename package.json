@@ -9,13 +9,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "postinstall": "patch-package",
     "bluebird": "^3.7.2",
     "chrome-aws-lambda": "^7.0.0",
     "handlebars": "^4.7.7",
+    "patch-package": "^6.4.1",
+    "postinstall": "patch-package",
     "puppeteer-core": "^8.0.0"
-  },
-  "devDependencies": {
-    "patch-package": "^6.4.1"
   }
 }
